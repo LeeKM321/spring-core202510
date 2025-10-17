@@ -1,41 +1,15 @@
 package com.codeit.springcore.config;
 
 import com.codeit.springcore.chap03.*;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 
-// 객체 생성의 제어권을 모두 이 클래스에 작성할 예정
+@Configuration // 이 클래스는 Bean을 등록하기 위한 설정 클래스야.
+// 지정한 패키지 내에 있는 @Component가 붙은 객체들을 모두 스캔해서 빈으로 등록 시키겠다.
+@ComponentScan(basePackages = "com.codeit.springcore.chap04")
 public class AppConfig {
 
-    // 쉐프 객체 생성
-    public Chef chef01() {
-        return new KimChef();
-    }
-
-    public Chef chef02() {
-        return new JohnChef();
-    }
-
-    // 코스 요리 객체 생성
-    public Course course01() {
-        return new SushiCourse();
-    }
-
-    public Course course02() {
-        return new WesternCourse();
-    }
-
-    // 레스토랑 객체 생성
-    public Restaurant restaurant01() {
-        return new AsianRestaurant(chef01(), course01());
-    }
-
-    public Restaurant restaurant02() {
-        return new WesternRestaurant(chef02(), course02());
-    }
-
-    // 호텔 객체 생성
-    public Hotel hotel() {
-        return new Hotel(restaurant01(), chef01());
-    }
+    // 추가적으로 등록할 빈이 있다면 메서드의 리턴 방식으로 빈 등록 가능.
 
 }
 
